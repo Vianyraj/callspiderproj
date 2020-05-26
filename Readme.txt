@@ -1,6 +1,6 @@
 Scrapy: 
-PaperSpider is the main spider which will scrap the paths of different events 
-and itemloader loads it to the containers(like Eventname=ScrapyField()),
+PaperSpider is the main spider which will scrap the paths of different events,
+itemloader loads it to the containers(like Eventname=ScrapyField()),
 which are used in the PaperscrapyPipline to send the data to the Database.
 
 Django:
