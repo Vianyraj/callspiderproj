@@ -77,10 +77,11 @@ ROBOTSTXT_OBEY = True
 #}
 
 # Configure item pipelines
-# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+#See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'paperscrapy.pipelines.PaperscrapyPipeline': 300,
 }
+#ITEM_PIPELINES = {"scraper.pipelines.TheodoTeamPipeline": 300}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

@@ -7,14 +7,19 @@
 
 import scrapy
 
+#
+# class PaperscrapyItem(scrapy.Item):
+#     # define the fields for your item here like:
+#     # name = scrapy.Field()
+#
+#     Eventnamelink = scrapy.Field()
+#     Eventname = scrapy.Field()
+#     whenlink = scrapy.Field()
+#     when = scrapy.Field()
+#
+#     pass
+from scrapy_djangoitem import DjangoItem
+from .models import TheodoTeam
 
-class PaperscrapyItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-
-    Eventnamelink = scrapy.Field()
-    Eventname = scrapy.Field()
-    whenlink = scrapy.Field()
-    when = scrapy.Field()
-
-    pass
+class TheodoTeamItem(DjangoItem):
+        django_model = TheodoTeam
