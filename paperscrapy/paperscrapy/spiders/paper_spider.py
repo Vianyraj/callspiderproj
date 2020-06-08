@@ -41,7 +41,7 @@ class TheodoSpider(scrapy.Spider):
       name = "theodo"
       start_urls = ["https://www.theodo.co.uk/team"]
 
-      # this is what start_urls does
+      # this is what start_urls does123
       # def start_requests(self):
       #     urls = ['https://www.theodo.co.uk/team',]
       #     for url in urls:
