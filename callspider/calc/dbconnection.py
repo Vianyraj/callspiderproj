@@ -1,14 +1,14 @@
 import psycopg2
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'calc',
-        'USER':'postgres',
-        'PASSWORD': '1234',
-        'HOST':'localhost',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'calc',
+#         'USER':'postgres',
+#         'PASSWORD': '1234',
+#         'HOST':'localhost',
+#     }
+# }
 
 import psycopg2
 
@@ -21,29 +21,29 @@ import psycopg2
 
 
     # conn = psycopg2.connect(database= ENGINE, user= NAME, password= PASSWORD, host= HOST)
-conn = psycopg2.connect(user="postgres",
-                              password="1234",
-                              host="127.0.0.1",
-                              port="5432",
-                              database="calc")
-
-cur = conn.cursor()
-print("database is succesful")
-#id INT NOT NULL,
-cur.execute("""
-
-CREATE TABLE theodo
-(
-
-name  TEXT NOT NULL,
-image  TEXT NOT NULL,
-fun_fact  TEXT NOT NULL
-)
-
-""")
-
-conn.commit()
-print("table created successfully")
+# conn = psycopg2.connect(user="postgres",
+#                               password="1234",
+#                               host="127.0.0.1",
+#                               port="5432",
+#                               database="calc")
+#
+# cur = conn.cursor()
+# print("database is succesful")
+# #id INT NOT NULL,
+# cur.execute("""
+#
+# CREATE TABLE theodo
+# (
+#
+# name  TEXT NOT NULL,
+# image  TEXT NOT NULL,
+# fun_fact  TEXT NOT NULL
+# )
+#
+# """)
+#
+# conn.commit()
+# print("table created successfully")
 
 #i=1
 #inserting data

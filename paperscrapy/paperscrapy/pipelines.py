@@ -20,7 +20,7 @@ conn = psycopg2.connect(user="postgres",
                             port="5432",
                             database="calc")
 cur = conn.cursor()
-#
+
 #
 #
 # class PaperscrapyPipeline(object):#this is for...
@@ -49,8 +49,8 @@ cur = conn.cursor()
 #                          item["when"][k+2],
 #                          item["when"][k+3]
 #                      ))
-
-                          item.save()
+#
+#
 #
 #                   if (ID_event<= b):
 #                       Eventnamelink = source + item["Eventnamelink"][p]
@@ -68,6 +68,7 @@ cur = conn.cursor()
 #                   conn.commit()
 #                   k=k+4
 #                   print('k is',k)
+#
 #                   if (ID_when > len(item["when"] or ID_event > len(item["Eventname"]))):
 #                     ID_event=1
 #                     ID_when=1
@@ -76,8 +77,9 @@ cur = conn.cursor()
 
 
 
-## pipelines.py
+# ## pipelines.py
 class TheodoTeamPipeline(object):
       def process_item(self, item, spider):
           item.save()
+          print(item)
           return item

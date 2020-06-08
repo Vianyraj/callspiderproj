@@ -1,12 +1,12 @@
 #-*- coding: utf-8 -*-
-# import scrapy
-# from ..items import PaperscrapyItem
-# from scrapy.loader import ItemLoader
+#import scrapy
+#from ..items import PaperscrapyItem
+#from scrapy.loader import ItemLoader
 # import numpy as np
-#from scrapy_djangoitem import DjangoItem
+# from scrapy_djangoitem import DjangoItem
 
 
-
+#
 # class PaperSpiderSpider(scrapy.Spider):
 #     name = 'paper'
 #     #allowed_domains = ['paper.com']
@@ -29,9 +29,13 @@
 #          yield loader.load_item()
 
 
+
+
 #https://blog.theodo.com/2019/01/data-scraping-scrapy-django-integration/
+
+
 import scrapy
-from paperscrapy.items import TheodoTeamItem
+from ..items import TheodoTeamItem
 
 class TheodoSpider(scrapy.Spider):
       name = "theodo"

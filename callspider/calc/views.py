@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpRequest
 # Create your views here.
-#from .models import paperscrapying
+from .models import paperscrapying
 import operator
-
+#from .models import TheodoTeam
 
 
 
@@ -23,26 +23,26 @@ import operator
 #     res=val1+val2
 #     return render(request,'result.html',{'result':res})
 
-# def list_todo_items(request):
-#     context={'todo_list': paperscrapying.objects.all()}
-#     return render(request,'list.html',context)
-#
+def list_todo_items(request):
+    context={'todo_list': paperscrapying.objects.all()}
+    return render(request,'list.html',context)
+    print(context)
 #
 #
 # def list(request):
 #     return render(request,'list.html',{'name':'list'})
 
-def insert_todo_item(request:HttpRequest):
-    todo=paperscrapying(eventlink=request.POST['content'])
-    todo.save()
-    todo1 = paperscrapying(eventname=request.POST['content1'])
-    todo1.save()
-   # todo = paperscrapying(eventlink=)
-    #todo.save()
-    # google = paperscrapy1(movie2='google')
-    # google.save()
-
-    return redirect('list')
+# def insert_todo_item(request:HttpRequest):
+#     todo=paperscrapying(eventlink=request.POST['content'])
+#     todo.save()
+#     todo1 = paperscrapying(eventname=request.POST['content1'])
+#     todo1.save()
+#    # todo = paperscrapying(eventlink=)
+#     #todo.save()
+#     # google = paperscrapy1(movie2='google')
+#     # google.save()
+#
+#     return redirect('list')
 
 
 

@@ -5,9 +5,10 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
-
-#
+#import scrapy
+# from scrapy_djangoitem import DjangoItem
+# from theodo_team.models import TheodoTeam
+# #
 # class PaperscrapyItem(scrapy.Item):
 #     # define the fields for your item here like:
 #     # name = scrapy.Field()
@@ -19,7 +20,7 @@ import scrapy
 #
 #     pass
 from scrapy_djangoitem import DjangoItem
-from .models import TheodoTeam
+from callspider.calc.models import TheodoTeam
 
 class TheodoTeamItem(DjangoItem):
         django_model = TheodoTeam
