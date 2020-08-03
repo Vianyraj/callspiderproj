@@ -1,0 +1,30 @@
+
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: powderblue;
+  padding: 150px;
+}
+</style>
+
+
+<div class="content">
+  <h1>LOGIN</h1>
+  <form method="POST">
+    {% csrf_token %}
+     {{form.as_p}}
+     <button>Login</button>
+ </form>
+</div>
+
+
+
+
+
+{% endblock %}
