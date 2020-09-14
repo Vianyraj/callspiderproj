@@ -16,9 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
+
+from rest_framework.urlpatterns import format_suffix_patterns
+from django.conf.urls import url
+from questions import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('questions.urls')),
     path('accounts/',include('questions.urls')),
     #path('home',include('paperscrapy.dbconnection')),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^PaperJson/',views.PaperList().as_view())
 ]
+urlpatterns=format_suffix_patterns(urlpatterns)

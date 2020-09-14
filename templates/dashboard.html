@@ -3,6 +3,7 @@
 
 
 {% load static %}
+{% load bootstrap %}
 <!DOCTYPE html>
 
   <h1>Logged in as:{{user.username}}</h1>
@@ -13,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Todos</title>
+    <title>Call for papers and events</title>
     <a href="{% url 'logout' %}">Logout</a>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,7 +30,36 @@
                         <h1 class="display-8 text-info" align="center" >  Events of Wikicfp and BMBF</h1>
                     </div>
 
-                   <table border="2" width="100%" cellpadding="3" align="center">
+
+
+                       <form method="GET">
+                           {{filter.form}}
+                           <button type ="submit" >Search</button>
+                       </form>
+
+
+
+                        {% for snippet in filter %}
+                         <tbody>
+                          <tr>
+
+                               <td >{{snippet.Title}}</td>
+                               <td >{{snippet.Dates}}</td>
+                               <td >{{snippet.Where}}</td>
+                               <td >{{snippet.Deadline}}</td>
+                               <td>
+
+                               <a href="{{snippet.Url}}"> {{snippet.Url}} </a></td>
+
+
+                          </tr>
+                          <br><br>
+
+                         </tbody>
+
+                        {% endfor %}
+
+                        <!--
                         <tr>
                             <th>Title</th>
                             <th>Dates</th>
@@ -38,6 +68,7 @@
                             <th>URL</th>
                             {% for events in list_events %}
                          <tbody>
+
                           <tr>
                                <td >{{events.Title}}</td>
                                <td >{{events.Dates}}</td>
@@ -53,7 +84,7 @@
 
                          </tbody>
 
-                        {% endfor %}
+                        {% endfor %}-->
                     </table>
 
                 </div>

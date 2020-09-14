@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     #'django.contrib.sites',
     'questions',
     #'scrapy_project.apps.ScrapyProjectConfig'
+    'rest_framework',
+    'django_filters',
+    'bootstrapform'
 
 
 ]
@@ -129,3 +132,8 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = '/accounts/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
