@@ -1,0 +1,17 @@
+Django==3.0.8
+
+
+
+Scrapy==2.1.0
+
+
+
+djangorestframework==3.11.1
+
+
+
+django-filter==2.3.0
+
+
+
+django-bootstrap-form==3.4

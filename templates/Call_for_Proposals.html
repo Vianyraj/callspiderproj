@@ -1,0 +1,251 @@
+
+
+
+{% extends "index.html" %}
+{% load static %}
+
+
+
+
+
+
+
+
+{% block content %}
+
+
+<div>Logged in as:{{user.username}}</div>
+
+<a href="{% url 'logout' %}">Logout</a>
+
+
+
+<div class="container">
+    <form method="get" action="/Call_for_Papers">
+        <button type="submit" >Call for Papers</button>
+    </form>
+
+
+
+
+</div>
+
+
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<style>
+p {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0px;
+}
+.show {
+         -o-transition: opacity 1s;
+         -moz-transition: opacity 1s;
+         -webkit-transition: opacity 1s;
+         transition: opacity 1s;
+      opacity:1;
+    }
+    .hide{  opacity:0; }
+</style>-->
+</head>
+
+<script>
+
+function myFunction(){
+
+var form_value =document.getElementById("buttons").value ;
+
+if (form_value =="Restart")
+{alert('Please wait Spider will take 15 seconds to run ');
+
+}
+
+}
+
+  </script>
+
+<body>
+
+<!--
+<p> Please wait Spider is running for <span id="countdowntimer">10 </span> Seconds </p>-->
+<!-- form to resta-->
+<form method="get" action="/Call_for_Proposals">
+    <button id ="buttons" type="submit"   value="Restart" onclick="myFunction()" name="Restart" >Run Spiders</button>
+</form>
+
+<div id="div1" class="show">
+    <div id="div2" class="hide"  >
+    <p> Please wait Spider is running for <span id="countdowntimer">15 </span> Seconds </p>
+    </div>
+    </div>
+
+
+
+
+</body>
+
+<!--
+<script language="Javascript">
+var timeleft = 15;
+<input type="button" value="click me" onclick="timeout_init()" />
+function timeout_trigger() {
+    window.alert('Hello!');
+}
+
+function timeout_init() {
+    setTimeout('timeout_trigger()', 2000);
+}
+
+</script>-->
+<!--
+<button id="countdowntimer" onclick="tempInvisible(this);">Click</button>
+<span class="spinner-grow spinner-grow-sm"></span><p> Spider is running Please wait it will end in <span id="countdowntimer">15 </span> seconds </p>
+    <script type="text/javascript">
+
+
+    function tempInvisible(countdowntimer) {
+setTimeout(()=>{
+}
+
+
+        setTimeout(function() {
+        var timeleft = 15;
+        var downloadTimer = setInterval(function(){
+
+        timeleft--;
+        document.getElementById("countdowntimer").textContent = timeleft;
+        if(timeleft <= 0)
+            clearInterval(downloadTimer);
+        },1000);
+            countdowntimer.style.display = 'block';
+        }, 3000);
+
+    }
+
+    </script>-->
+<!--{% if buttons == 1%}
+     <div class="container">
+
+    <span class="spinner-grow spinner-grow-sm"></span><p> Spider is running Please wait it will end in <span id="countdowntimer">15 </span> seconds </p>
+    <span class=" spinner-grow-sm  spinner-border spinner-border-sm"></span>
+
+    <script type="text/javascript">
+
+        var timeleft = 15;
+        var downloadTimer = setInterval(function(){
+
+        timeleft--;
+        document.getElementById("countdowntimer").textContent = timeleft;
+        if(timeleft <= 0)
+            clearInterval(downloadTimer);
+        },1000);
+
+    </script>
+
+ <button class="btn btn-primary" disabled>
+    <span class="spinner-grow spinner-grow-sm"></span>
+    Loading..
+  </button>
+</div>
+{% endif %}-->
+
+
+<!--
+{% if buttons == 0 %}
+
+  <button class="btn btn-primary" disabled>
+    <span class="spinner-grow spinner-grow-sm"></span>
+    Loading buttons=0..
+  </button>
+
+{% endif %}-->
+<br/><br/>
+<!--part1-->
+
+                <div class="container">
+
+                        <form method="get" action="/Call_for_Proposals_Search_Result">
+                            {{ contextBmbf.form }}
+                            <br><br>
+                            <div>
+                            From :<input type="date" name="fromdate"/>
+                             To :<input type="date" name="todate"/>
+
+                            <input value="Lesserdates" type="radio" name="extremes">Less than fromdate
+
+                            <input value="Greaterdates" type="radio" name="extremes">Greater than fromdate
+                            <!--<input value="todelete" type="radio" name="todelete">To Restart-->
+                               </div>
+                            <button type="submit" >Submit</button>
+                        </form>
+
+
+
+                </div>
+
+<br/><br/>
+
+
+
+
+
+
+
+
+
+   <div class="container">
+                <form class="card">
+                    <div class="card-header shadow-sm bg-light">
+                        <h1 class="display-6 text-info" align="center" > Call for Proposals </h1>
+                    </div>
+                    <form method ="GET">
+                        {% csrf_token%}
+                    <table>
+                        <tr>
+
+                            <th>Title</th>
+                            <th>Deadline</th>
+                            <th>Url</th>
+                        </tr>
+
+<!--part2-->
+        <!-- for getting the page num and checking if previous and next page is present-->
+        {% if contextpage.has_previous %}
+        <a href="{% url 'dashboard' %}?page={{contextpage.previous_page_number}}"> Previous Page of Bmbf </a>
+        {% endif %}
+           {% if contextpage.has_next %}
+        <a href="{% url 'dashboard' %}?page={{contextpage.next_page_number}}">Next Page of Bmbf</a>
+        {% endif %}
+        <span class="">
+            Page {{contextpage.number}} of {{ contextpage.paginator.num_pages }}
+        </span>
+                <p>{% for pg in contextpage.paginator.page_range %}
+            {% if contextpage.number == pg %}
+                <span class="active"><a href="?page={{pg}}" >{{pg}}</a></span>
+            {% else %}
+                <span><a href="?page={{pg}}" >{{pg}}</a></span>
+            {% endif %}
+        {% endfor %}
+        </p>
+
+
+
+<!--part3-->
+         {% for items_page in contextpage %}
+             <tr>
+                <td>{{items_page.Title}}</td>
+                 <td >{{items_page.Deadline}}</td>
+                 <td><a href="{{items_page.Url}}"> {{items_page.Url}} </a></td>
+             </tr>
+             {% endfor %}
+    </table>
+                </form>
+                </form>
+
+                </div>
+   </div>
+
+
+{% endblock %}

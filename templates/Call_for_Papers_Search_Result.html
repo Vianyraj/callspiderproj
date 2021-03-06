@@ -1,0 +1,166 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<div >Logged in as:{{user.username}}</div>
+<a href="{% url 'logout' %}">Logout</a>
+<div class="container">
+    <form method="get" action="/dashboard">
+        <button type="submit" >Dashboard</button>
+    </form>
+</div>
+
+
+
+
+   <div class="container">
+                <div class="card">
+                    <div class="card-header shadow-sm bg-light">
+                        <h1 class="display-6 text-info" align="center" > Call for Papers </h1>
+                    </div>
+                <table>
+                        <tr>
+
+                            <th>Title</th>
+                            <!--<th>Dates</th>-->
+                            <th>Place</th>
+                            <th>Deadline</th>
+                            <th>URL</th>
+                        </tr>
+
+  <!--part1-->
+                    {% for wiki_items in contextwiki.qs %}<!--Dipalys all the values of wiki model which is not searched-->
+
+                            <tr>
+
+                               <td >{{wiki_items.Title}}</td>
+                              <!-- <td >{{snippet.Dates}}</td>-->
+                               <td >{{wiki_items.Where}}</td>
+                               <td >{{wiki_items.Deadline}}</td>
+                               <td>
+
+                               <a href="{{wiki_items.Url}}"> {{wiki_items.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+    {% endfor %}
+
+<!--part2-->
+                  {% if from_to_dates %}
+
+                      {% for dates in from_to_dates %}
+
+                            <tr>
+
+                               <td >{{dates.Title}}</td>
+                              <!-- <td >{{snippet.Dates}}</td>-->
+                               <td >{{dates.Where}}</td>
+                               <td >{{dates.Deadline}}</td>
+                               <td>
+
+                               <a href="{{dates.Url}}"> {{dates.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+    {% endfor %}
+{% endif%}
+                    <!-- display only lesser dates with SQL commands-->
+                  {% if lesser_dates %}
+
+                     {% for dates in lesser_dates %}
+
+                            <tr>
+
+                               <td >{{dates.Title}}</td>
+                              <!-- <td >{{snippet.Dates}}</td>-->
+                               <td >{{dates.Where}}</td>
+                               <td >{{dates.Deadline}}</td>
+                               <td>
+
+                               <a href="{{dates.Url}}"> {{dates.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+                     {% endfor %}
+                    {% endif%}
+
+                    {% if greater_dates %}
+
+                        {% for dates in greater_dates %}
+
+                            <tr>
+
+                               <td >{{dates.Title}}</td>
+                              <!-- <td >{{snippet.Dates}}</td>-->
+                               <td >{{dates.Where}}</td>
+                               <td >{{dates.Deadline}}</td>
+                               <td>
+
+                               <a href="{{dates.Url}}"> {{dates.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+                        {% endfor %}
+                    {% endif%}
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+<!--part3-->
+<!-- display only lesser dates python code-->
+<!--
+{% for Title in lesser_dates.Title %}{% for Deadline in lesser_dates.Deadline %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+    {% for Url in lesser_dates.Url %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+                    {% for wher in lesser_dates.Where %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+<tr>
+    <td>{{Title}}</td>
+    <td>{{wher}}</td>
+    <td>{{Deadline}}</td>
+
+    <td><a href="{{Url}}"> {{Url}} </a></td>
+</tr>
+    {% endif %}
+{% endfor %}
+         {% endif %}
+{% endfor %}
+    {% endif %}{% endfor %}{% endfor %}
+-->
+<!-- display only gretaer dates-->
+                    <!--
+{% for Titlegreater in greater_dates.Title %}{% for Deadlinegreater in greater_dates.Deadline %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+    {% for Urlgreater in greater_dates.Url %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+                    {% for wher in greater_dates.Where %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+<tr>
+    <td>{{Titlegreater}}</td>
+    <td>{{wher}}</td>
+    <td>{{Deadlinegreater}}</td>
+
+    <td><a href="{{Urlgreater}}"> {{Urlgreater}} </a></td>
+</tr>
+    {% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+    {% endif %}{% endfor %}{% endfor %}
+-->
+
+
+
+                </table>
+                </div>
+   </div>
+
+
+{% endblock %}

@@ -1,0 +1,341 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+<!--{% load static %}
+{% load bootstrap %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The second one</title>
+</head>
+ <body>
+    <div>asecondindex</div>
+
+    {% if dataIndex2 %}
+    <div>
+        {{dataIndex2}}
+    </div>
+    {% endif %}
+    {% if list_events1 %}
+    <div>
+        {{list_events1}}
+    </div>
+    {% endif %}
+
+                             {% if filtering_data %}
+                             <div>
+                                 {{filtering_data}}
+                             </div>
+                             {% endif %}
+
+
+
+
+
+                    {% for events in list_events1 %}
+                        <tbody>
+
+                          <tr>
+                               <td >{{events.Title}}</td>
+                               <td >{{events.Dates}}</td>
+                               <td >{{events.Where}}</td>
+                               <td >{{events.Deadline}}</td>
+                               <td>
+
+                               <a href="{{events.Url}}"> {{events.Url}} </a></td>
+
+
+                          </tr>
+                          <br><br>
+                    {% endfor %}
+
+
+
+
+ </body>
+</html>-->
+
+<!--
+
+
+
+{% load static %}
+{% load bootstrap %}
+
+
+  <h1>Logged in as:{{user.username}}</h1>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Call for papers and events</title>
+    <a href="{% url 'logout' %}">Logout</a>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+
+<body style="background-color:powderblue;">
+
+
+   {% if dataIndex %}
+    <div>
+        {{dataIndex}}
+    </div>
+    {% endif %}
+      {% if dataIndex2 %}
+    <div>
+        {{dataIndex2}}
+    </div>
+    {% endif %}
+
+
+                <div class="container">
+                        <form method="get">
+                            {{ filtering_data.form }}
+                            <input type="submit" />
+                        </form>
+                </div>
+
+
+
+
+
+
+    <div class="container">
+                <div class="card">
+                    <div class="card-header shadow-sm bg-light">
+                        <h1 class="display-6 text-info" align="center" >  Events of Wikicfp and BMBF</h1>
+                    </div>
+
+
+
+                        <tr>
+
+                            <th>Title</th>
+                            <th>Dates</th>
+                            <th>Place</th>
+                            <th>Deadline</th>
+                            <th>URL</th>
+                        </tr>
+
+
+                    {% for events in list_events1 %}
+                     <table>
+                        <tbody>
+
+                          <tr>
+                               <td >{{events.Title}}</td>
+                               <td >{{events.Dates}}</td>
+                               <td >{{events.Where}}</td>
+                               <td >{{events.Deadline}}</td>
+                               <td>
+
+                               <a href="{{events.Url}}"> {{events.Url}} </a></td>
+
+
+                          </tr>
+                          <br><br>
+
+                         </tbody>
+
+                        {% endfor %}
+                        {% for snippet in filtering_data %}
+
+                            <tr>
+
+                               <td >{{snippet.Title}}</td>
+                               <td >{{snippet.Dates}}</td>
+                               <td >{{snippet.Where}}</td>
+                               <td >{{snippet.Deadline}}</td>
+                               <td>
+
+                               <a href="{{snippet.Url}}"> {{snippet.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+
+
+
+                            {% endfor %}
+
+
+
+                    {% for events in list_events1 %}
+
+
+
+                    </tr>
+                        <tbody>
+
+                          <tr>
+                               <td >{{events.Title}}</td>
+                               <td >{{events.Dates}}</td>
+                               <td >{{events.Where}}</td>
+                               <td >{{events.Deadline}}</td>
+                               <td>
+
+                               <a href="{{events.Url}}"> {{events.Url}} </a></td>
+
+
+                          </tr>
+                          <br><br>
+
+                         </tbody>
+
+                        {% endfor %}
+                    </table>
+                </div>
+
+    </div>
+
+</body>
+
+</html>-->
+
+
+{% block content %}
+
+
+
+<div >Logged in as:{{user.username}}</div>
+<a href="{% url 'logout' %}">Logout</a>
+<div class="container">
+    <form method="get" action="/dashboard">
+        <button type="submit" >Dashboard</button>
+    </form>
+</div>
+
+
+
+
+   <div class="container">
+                <div class="card">
+                    <div class="card-header shadow-sm bg-light">
+                        <h1 class="display-6 text-info" align="center" > Call for Papers </h1>
+                    </div>
+                <table>
+                        <tr>
+
+                            <th>Title</th>
+                            <!--<th>Dates</th>-->
+                            <th>Place</th>
+                            <th>Deadline</th>
+                            <th>URL</th>
+                        </tr>
+
+  <!--part1-->
+                    {% for wiki_items in contextwiki.qs %}<!--Dipalys all the values of wiki model which is not searched-->
+
+                            <tr>
+
+                               <td >{{wiki_items.Title}}</td>
+                              <!-- <td >{{snippet.Dates}}</td>-->
+                               <td >{{wiki_items.Where}}</td>
+                               <td >{{wiki_items.Deadline}}</td>
+                               <td>
+
+                               <a href="{{wiki_items.Url}}"> {{wiki_items.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+    {% endfor %}
+
+<!--part2-->
+
+                   {% for dates in from_to_dates %}
+
+                            <tr>
+
+                               <td >{{dates.Title}}</td>
+                              <!-- <td >{{snippet.Dates}}</td>-->
+                               <td >{{dates.Where}}</td>
+                               <td >{{dates.Deadline}}</td>
+                               <td>
+
+                               <a href="{{dates.Url}}"> {{dates.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+    {% endfor %}
+
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+<!--part3-->
+<!-- display only lesser dates-->
+
+{% for Title in lesser_dates.Title %}{% for Deadline in lesser_dates.Deadline %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+    {% for Url in lesser_dates.Url %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+                    {% for wher in lesser_dates.Where %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+<tr>
+    <td>{{Title}}</td>
+    <td>{{wher}}</td>
+    <td>{{Deadline}}</td>
+
+    <td><a href="{{Url}}"> {{Url}} </a></td>
+</tr>
+    {% endif %}
+{% endfor %}
+         {% endif %}
+{% endfor %}
+    {% endif %}{% endfor %}{% endfor %}
+
+<!-- display only gretaer dates-->
+{% for Titlegreater in greater_dates.Title %}{% for Deadlinegreater in greater_dates.Deadline %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+    {% for Urlgreater in greater_dates.Url %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+                    {% for wher in greater_dates.Where %}
+    {% if forloop.counter == forloop.parentloop.counter %}
+<tr>
+    <td>{{Titlegreater}}</td>
+    <td>{{wher}}</td>
+    <td>{{Deadlinegreater}}</td>
+
+    <td><a href="{{Urlgreater}}"> {{Urlgreater}} </a></td>
+</tr>
+    {% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+    {% endif %}{% endfor %}{% endfor %}
+
+
+
+
+                </table>
+                </div>
+   </div>
+
+
+{% endblock %}

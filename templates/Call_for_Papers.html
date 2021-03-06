@@ -1,0 +1,166 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+<!--
+   <div class="container">
+                <div class="card">
+                    <div class="card-header shadow-sm bg-light">
+                        <h1 class="display-6 text-info" align="center" > Call for Papers </h1>
+                    </div>
+                <table>
+                        <tr>
+
+                            <th>Title</th>
+                            <th>Dates</th>
+                            <th>Place</th>
+                            <th>Deadline</th>
+                            <th>URL</th>
+                        </tr>
+
+  {% for snippet in context4 %}
+
+                            <tr>
+
+                               <td >{{snippet.Title}}</td>
+                               <td >{{snippet.Dates}}</td>
+                               <td >{{snippet.Where}}</td>
+                               <td >{{snippet.Deadline}}</td>
+                               <td>
+
+                               <a href="{{snippet.Url}}"> {{snippet.Url}} </a></td>
+
+                            </tr>
+                            <br><br>
+    {% endfor %}
+
+                </table>
+                </div>
+   </div>
+-->
+<!--
+
+ <div class="container">
+                        <form method="get" action="/index2">
+                            {{ contextwiki.form }}
+                            From :<input type="date" name="fromdate">
+        To: <input type="date" name="todate">
+                            <button type="submit" >Call_for_Papers</button>
+                        </form>
+                </div>
+
+-->
+
+
+<script>
+
+function myFunction(){
+var form_value =document.getElementById("buttons").value ;
+if (form_value =="Restartinwiki")
+{alert('Please wait.. Spider will take 15 seconds to run ');
+}
+}
+
+</script>
+<div>Logged in as:{{user.username}}</div>
+<a href="{% url 'logout' %}">Logout</a>
+<div class="container">
+    <form method="get" action="/dashboard">
+        <button type="submit" >Dashboard</button>
+    </form>
+<form method="get" action="/Call_for_Papers">
+
+                            <br><br>
+
+    <button id ="buttons" type="submit" value="Restartinwiki" onclick="myFunction()" name="Restartinwiki" >Run Spiders</button>
+                        </form>
+</div>
+
+<br/><br/>
+                <div class="container">
+                        <form method="get" action="/Call_for_Papers_Search_Result">
+                            {{ contextwiki.form }}
+                            <br><br>
+                            <div>
+                            From :<input type="date" name="fromdate"/>
+                             To :<input type="date" name="todate"/>
+
+
+                            <input value="Lesserdates" type="radio" name="extremes">Less than fromdate
+
+                            <input value="Greaterdates" type="radio" name="extremes">Greater than fromdate
+
+
+                               </div>
+                            <button type="submit" >Submit</button>
+                        </form>
+                </div>
+
+<br/><br/>
+
+   <div class="container">
+                <form class="card">
+                    <div class="card-header shadow-sm bg-light">
+                        <h1 class="display-6 text-info" align="center" > Call for Papers </h1>
+                    </div>
+
+
+
+
+                    <table>
+
+                        <tr>
+
+                            <th>Title</th>
+                            <th>Deadline</th>
+                            <th>Place</th>
+                            <th>Url</th>
+                        </tr>
+                    {% if contextpage.has_previous %}
+                        <a href="{% url 'Call_for_Papers' %}?page={{contextpage.previous_page_number}}"> Previous Page of Wiki</a>
+                    {% endif %}
+                    {% if contextpage.has_next %}
+                        <a href="{% url 'Call_for_Papers' %}?page={{contextpage.next_page_number}}">Next Page of Wiki</a>
+                        {% endif %}
+                    <span class="">
+                        Page {{contextpage.number}} of {{ contextpage.paginator.num_pages }}
+                    </span>
+        <p>{% for pg in contextpage.paginator.page_range %}
+            {% if contextpage.number == pg %}
+                <span class="active"><a href="?page={{pg}}" >{{pg}}</a></span>
+            {% else %}
+                <span><a href="?page={{pg}}" >{{pg}}</a></span>
+            {% endif %}
+        {% endfor %}
+        </p>
+
+
+         {% for snippet1 in contextpage %}
+             <tr>
+                <td>{{snippet1.Title}}</td>
+                 <td >{{snippet1.Deadline}}</td>
+                 <td >{{snippet1.Where}}</td>
+                 <td><a href="{{snippet1.Url}}"> {{snippet1.Url}} </a></td>
+             </tr>
+
+             {% endfor %}
+
+
+
+
+
+
+                </table>
+          </form>
+
+   </div>
+
+
+{% endblock %}
+
+
+
