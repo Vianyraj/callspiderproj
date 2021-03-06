@@ -1,9 +1,0 @@
-# from django.db.models.signals import pre_save # Or whatever you are using
-# from django.dispatch import receiver
-#
-# from scrapy_django.questions.models import Paper_model
-#
-# @receiver(pre_save, sender=Paper_model)
-# def my_receiver(sender, instance, **kwargs):
-#     mysender = sender
-#     print(mysender)
